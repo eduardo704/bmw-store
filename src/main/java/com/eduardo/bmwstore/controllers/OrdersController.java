@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-@Log4j2
 @RestController
 @RequestMapping("/api/orders")
 public class OrdersController {

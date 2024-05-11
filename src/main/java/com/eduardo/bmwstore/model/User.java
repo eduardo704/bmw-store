@@ -9,10 +9,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Entity
-public class User {
-  
+@Data
+@RequiredArgsConstructor
+public class User {  
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
