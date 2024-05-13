@@ -9,12 +9,9 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
-
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authenticationManager)
@@ -25,20 +22,10 @@ public class SecurityConfig {
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         // Set permissions on endpoints
         .authorizeHttpRequests(auth -> auth
-        
-            // our public endpoints
-            // .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
-            // .requestMatchers(HttpMethod.POST, "/api/auth/login/**").permitAll()
-            // .requestMatchers(HttpMethod.GET, "/authentication-docs/**").permitAll()
             .anyRequest().permitAll()
-
         )
         .authenticationManager(authenticationManager)
-
-
-        // .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
-
 
 }

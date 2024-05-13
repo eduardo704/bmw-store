@@ -16,12 +16,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/api/orders")
 public class OrdersController {
     private OrderService orderService;
-       public OrdersController(OrderService orderService) {
+
+    public OrdersController(OrderService orderService) {
         this.orderService = orderService;
     }
 
@@ -29,16 +29,10 @@ public class OrdersController {
     public List<Order> getMethodName(@RequestParam("email") String email) {
         return this.orderService.getOrdersByUserEmail(email);
     }
-    
+
     @PostMapping("")
     public Order postMethodName(@RequestBody Order order) {
-        //TODO: process POST request
-        // log.debug("testeeee", order);
-        // System.out.println(order.getUserId());
-
         return this.orderService.saveOrder(order);
-
-        //
     }
-    
+
 }

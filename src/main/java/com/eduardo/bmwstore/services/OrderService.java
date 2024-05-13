@@ -5,16 +5,12 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.eduardo.bmwstore.exceptions.DuplicateException;
 import com.eduardo.bmwstore.model.Order;
 import com.eduardo.bmwstore.model.User;
 import com.eduardo.bmwstore.repository.OrderRepository;
 import com.eduardo.bmwstore.repository.UserRepository;
 
-import lombok.extern.log4j.Log4j2;
-
 @Service
-@Log4j2
 public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
@@ -38,7 +34,6 @@ public class OrderService {
         }
 
         order.setUser(existingUser.get());
-        log.debug("testeeee", order);
         return orderRepository.save(order);
     }
 }
