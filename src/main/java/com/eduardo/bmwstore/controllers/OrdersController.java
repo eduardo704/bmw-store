@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.eduardo.bmwstore.controllers.dtos.OrderByUserEmailDTO;
 import com.eduardo.bmwstore.model.Order;
 import com.eduardo.bmwstore.services.OrderService;
 
@@ -24,8 +25,8 @@ public class OrdersController {
     }
 
     @GetMapping("")
-    public List<Order> getMethodName() {
-        return this.orderService.getOrdersByUserId("");
+    public List<Order> getMethodName(@RequestBody OrderByUserEmailDTO request) {
+        return this.orderService.getOrdersByUserEmail(request.email());
     }
     
     @PostMapping("")

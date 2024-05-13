@@ -15,8 +15,8 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Data
 @RequiredArgsConstructor
-public class User {  
-    
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,16 +25,15 @@ public class User {
     @NotNull
     @Column(length = 100, nullable = false)
     private String name;
-    
+
     @NotBlank
     @NotNull
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, unique = true)
     private String email;
 
     @NotBlank
     @NotNull
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = true)
     private String password;
-
 
 }

@@ -31,29 +31,14 @@ public class SecurityConfig {
             // .requestMatchers(HttpMethod.POST, "/api/auth/login/**").permitAll()
             // .requestMatchers(HttpMethod.GET, "/authentication-docs/**").permitAll()
             .anyRequest().permitAll()
-        // our private endpoints
+
         )
         .authenticationManager(authenticationManager)
 
-        // We need jwt filter before the UsernamePasswordAuthenticationFilter.
-        // Since we need every request to be authenticated before going through spring
-        // security filter.
-        // (UsernamePasswordAuthenticationFilter creates a
-        // UsernamePasswordAuthenticationToken from a username and password that are
-        // submitted in the HttpServletRequest.)
+
         // .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
 
-    // @Bean
-    // public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-    //     return config.getAuthenticationManager();
-    // }
-
 
 }
-
-// CORS(Cross-origin resource sharing) is just to avoid if you run javascript
-// across different domains like if you execute JS on http://testpage.com and
-// access http://anotherpage.com
-// CSRF(Cross-Site Request Forgery)
