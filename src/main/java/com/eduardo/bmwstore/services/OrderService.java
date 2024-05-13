@@ -1,9 +1,11 @@
 package com.eduardo.bmwstore.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.eduardo.bmwstore.exceptions.DuplicateException;
 import com.eduardo.bmwstore.model.Order;
 import com.eduardo.bmwstore.model.User;
 import com.eduardo.bmwstore.repository.OrderRepository;
@@ -28,13 +30,14 @@ public class OrderService {
 
     public Order saveOrder(Order order) {
         String email = order.getUser().getEmail();
-        User existingUser = userRepository.findByEmail(email);
 
-        if (existingUser == null) {
-            existingUser = userRepository.save(order.getUser());
+        Optional<User> existingUser = userRepository.findByEmail(email);
+        if (!existingUser.isPresent()) {
+            User newUser = userRepository.save(order.getUser());
+            existingUser = Optional.of(newUser);
         }
 
-        order.setUser(existingUser);
+        order.setUser(existingUser.get());
         log.debug("testeeee", order);
         return orderRepository.save(order);
     }
